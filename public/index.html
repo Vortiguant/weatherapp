@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  #app {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 300px;
+  }
+  #result {
+    margin-top: 15px;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>Weather</h1>
+  <input type="text" id="city" placeholder="Enter city" />
+  <button id="getWeather">Get Weather</button>
+  <div id="result"></div>
+</div>
+<script>
+  document.getElementById('getWeather').addEventListener('click', async () => {
+    const city = document.getElementById('city').value;
+    if (!city) return alert('Please enter a city');
+    const res = await fetch(`/weather?city=${encodeURIComponent(city)}`);
+    if (!res.ok) return alert('Error fetching weather');
+    const data = await res.json();
+    const { temp, humidity } = data.main;
+    document.getElementById('result').innerHTML = `
+      <p>Temperature: ${temp} °C</p>
+      <p>Humidity: ${humidity}%</p>
+    `;
+  });
+</script>
+</body>
+</html>
