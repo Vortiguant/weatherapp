@@ -6,8 +6,9 @@ OpenWeatherMap API for data.
 
 ## Features
 - Query temperature and humidity for any city
-- Basic responsive layout
-- Placeholder for more advanced features like radar and 3D globe
+- Displays weather icon and description
+- Embedded interactive 3D globe (via globe.gl)
+- Basic responsive layout with modern design
 
 ## Usage
 Install dependencies and start the server:
